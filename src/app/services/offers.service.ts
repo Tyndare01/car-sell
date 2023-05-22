@@ -6,7 +6,16 @@ import { Offer } from '../interfaces/offer';
 })
 export class OffersService {
 
-  offers: Offer[] = [];
+ private offers: Offer[] = [
+
+  {
+    title: 'Renault à vendre',
+    brand: 'Renault',
+    model: 'Clio',
+    description: 'Bonne état',
+    price: 2000
+  }
+];
 
 
 
@@ -41,8 +50,6 @@ constructor() { }
     return this.offers;
 
   }
-
-
 
 
 }

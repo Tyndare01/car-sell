@@ -60,6 +60,7 @@ offers: Offer[] = [];
 
     ngOnInit(): void {
       this.initOfferForm();
+      this.offers = this.offersService.getOffers();
     }
 
     initOfferForm() : void {
@@ -98,12 +99,12 @@ offers: Offer[] = [];
 
       if (offerIndex == null || offerIndex == undefined){
         delete offer.index; // permet de supprimer l'index de l'offre
-        this.offers.push(offer); // permet d'ajouter l'offre dans le tableau
+        this.offers = this.offersService.createOffer(offer); // permet d'ajouter l'offre dans le tableau
       }
       else {
 
         delete offer.index;
-        this.offers[offerIndex] = offer; // permet de modifier l'offre dans le tableau
+        this.offers = this.offersService.editOffer(offer, offerIndex) // permet de modifier l'offre dans le tableau
       }
 
 
@@ -113,13 +114,13 @@ offers: Offer[] = [];
 
     OnEditOfferForm(offer: Offer, index: number): void {
 
-      this.offerForm.setValue({...offer, index});
-      console.log(this.offerForm.value);
+     this.offerForm.setValue({...offer, index});
+
 
     }
 
     onDeleteOffer(index: number): void {
-      this.offers.splice(index, 1); // Splice permet de supprimer un element dans un tableau
+     this.offers = this.offersService.deleteOffer(index); // Splice permet de supprimer un element dans un tableau
     }
 
 
