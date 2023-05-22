@@ -6,5 +6,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'car-sell';
+
+  //#region display text
+
+
+  // text = 'Hey mamane!';
+
+  // displayText = false;
+
+
+  // onClickButton() : void {
+  //   this.displayText = this.displayText ? false : true;
+
+  //   }
+
+  // // onClickButton() : void {
+  // //   console.log('Button was clicked');
+  //   this.text = 'Hello World';
+  // }
+   //#endregion
+
+
+
+
 }
