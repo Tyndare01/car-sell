@@ -63,7 +63,7 @@
 
 <!-- #region Formulaire Methode Reactive -->
 
-<div class="container py-5">
+<div class="container py-4">
   <div class="row mb-5">
       <div class="col-12 col-md-10 col-lg-8 col-xl-6 mx-auto">
         <div class="bg-white shadow rounded p-4">
@@ -119,9 +119,9 @@
           <tbody>
           <tr *ngFor="let offer of offers; let i = index">
             <th>{{i}}</th>
-            <td>{{offer.title}}</td>
+            <td>{{offer.title | firstCharUppercase }}</td>
             <td>{{offer.brand + ' ' + offer.model}}</td>
-            <td>{{offer.price}}</td>
+            <td>{{offer.price | currency: 'EUR': 'symbol': '4.2-2': 'fr' }}</td>
             <td>
               <button class="btn btn-primary" type= "button"(click)="OnEditOfferForm(offer, i)">Modifier</button>
               <button class="btn btn-danger" type="button" (click)="onDeleteOffer(i)">Supprimer</button>

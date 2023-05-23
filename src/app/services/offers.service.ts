@@ -12,7 +12,7 @@ export class OffersService {
     title: 'Renault à vendre',
     brand: 'Renault',
     model: 'Clio',
-    description: 'Bonne état',
+    description: 'bonne état',
     price: 2000
   }
 ];
@@ -39,6 +39,7 @@ constructor() { }
   editOffer(offer: Offer, index : number): Offer[] {
 
     this.offers[index] = offer;
+
     return this.offers;
 
 
