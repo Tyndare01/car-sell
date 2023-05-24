@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Offer } from 'src/app/interfaces/offer';
 import { OffersService } from 'src/app/services/offers.service';
 
@@ -9,7 +10,7 @@ import { OffersService } from 'src/app/services/offers.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
 /* #region tableau de voiture */
   // cars = [
@@ -43,7 +44,7 @@ offerForm! : FormGroup;
 
 offers: Offer[] = [];
 
-
+subscription!: Subscription
 
 
    constructor(
@@ -58,9 +59,40 @@ offers: Offer[] = [];
 
     ) { }
 
+
     ngOnInit(): void {
       this.initOfferForm();
-      this.offers = this.offersService.getOffers();
+      //this.offers = this.offersService.getOffers();
+      //this.subscription = this.offersService.getOffers().subscribe(
+        this.subscription = this.offersService.offerSubject.subscribe(
+        {
+          next: (offers: Offer[]) => {
+            console.log('NEXT');
+            this.offers = offers },
+          // complete: () => {
+          //   console.log('Les offres ont été récupérées')
+          // },
+          error: (error) => {console.error(error);
+          }
+
+        });
+        this.offersService.dispatchOffers();
+        console.log(this.offersService.offerSubject.value);
+        // Remarque : Nous avons besoin du BehaviorSubject pour pouvoir utiliser la méthode next() et complete() sur l'observable
+
+
+
+    // Promise
+    //   .then((offers: Offer[]) => {
+    //     this.offers = offers;
+
+    //   }).catch((error) => {
+    //     console.log(error);
+    // }).finally(() => {
+
+    //   console.log('La promesse est terminée');
+    // });
+
     }
 
     initOfferForm() : void {
@@ -73,6 +105,7 @@ offers: Offer[] = [];
         description: '',
         price: 0
       });
+
     }
 
       /* #region Route */
@@ -121,6 +154,10 @@ offers: Offer[] = [];
 
     onDeleteOffer(index: number): void {
      this.offers = this.offersService.deleteOffer(index); // Splice permet de supprimer un element dans un tableau
+    }
+
+    ngOnDestroy(): void {
+      this.subscription.unsubscribe();
     }
 
 

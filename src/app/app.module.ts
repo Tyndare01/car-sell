@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
+
 import { HomeComponent } from './home/home.component';
 import { registerLocaleData } from '@angular/common';
 
@@ -18,10 +18,8 @@ registerLocaleData(localeFr, 'fr');
   declarations: [
     AppComponent,
     HeaderComponent,
-    DashboardComponent,
     HomeComponent,
-    FirstCharUppercasePipe,
-    UppercaseInputDirective
+
   ],
   imports: [
     BrowserModule,
