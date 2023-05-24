@@ -11,6 +11,7 @@ import { registerLocaleData } from '@angular/common';
 
 import localeFr from '@angular/common/locales/fr';
 import { FirstCharUppercasePipe } from './pipes/first-char-uppercase.pipe';
+import { UppercaseInputDirective } from './directives/uppercase-input.directive';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -19,7 +20,8 @@ registerLocaleData(localeFr, 'fr');
     HeaderComponent,
     DashboardComponent,
     HomeComponent,
-    FirstCharUppercasePipe
+    FirstCharUppercasePipe,
+    UppercaseInputDirective
   ],
   imports: [
     BrowserModule,
